@@ -32,6 +32,9 @@ class Header extends Component {
               </MenuItem>
               <MenuItem>BOOTCAMPS</MenuItem>
               <MenuItem>SUBMIT A REVIEW</MenuItem>
+              <MenuItem>
+                Donations: {this.props.auth ? this.props.auth.credits : 0}
+              </MenuItem>
               {this.renderContent()}
             </Nav>
           </div>
