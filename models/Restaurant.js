@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
-const { Schemma } = mongoose;
+//const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 const ReviewSchema = require('./Review');
+
 const restaurantSchema = new Schema({
   name: String,
   website: String,
@@ -9,8 +11,8 @@ const restaurantSchema = new Schema({
   Instagram: String,
   ownerEmail: String,
   address: String,
-  dateCreated: Date
-  review:ReviewSchema
+  dateCreated: Date,
+  review: [ReviewSchema]
 });
 
 mongoose.model('restaurants', restaurantSchema);
