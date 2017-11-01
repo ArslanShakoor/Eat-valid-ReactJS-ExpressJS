@@ -1,0 +1,29 @@
+$white: #ff0000;
+$black: #000000;
+
+$theme: Light;
+
+$form-backgroud: #ffffff;
+$text-color: #000000;
+$label-color: grey;
+$box-autofill: #ffffff;
+$box-shadow: 0 0 0 30px white inset;
+
+@if $theme == Light {
+  $form-backgroud: #ffffff;
+  $text-color: #000000;
+  $label-color: grey;
+  $box-autofill: #ffffff;
+  $box-shadow: 0 0 0 30px #ffffff inset;
+} @else if $theme == Dark {
+  $form-backgroud: rgba(19, 35, 47, 0.9);
+  $text-color: #ffffff;
+  $label-color: rgba(255, 255, 255, 0.5);
+  $box-autofill-text: #ffffff;
+  $box-shadow: 0 0 0 30px rgba(19, 35, 47, 0.9) inset;
+}
+
+//webkit box shadow 0 0 0 30px rgba(19, 35, 47, 0.92) inset
+// background on focus #179b77
+// label rgba(255, 255, 255, 0.5)
+//form background rgba(19, 35, 47, 0.9)

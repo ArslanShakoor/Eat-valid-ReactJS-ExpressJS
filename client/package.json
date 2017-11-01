@@ -1,6 +1,10 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "jest": {
+    "scriptPreprocessor": "./node_modules/jest-css-modules",
+    "verbose": true
+  },
   "private": true,
   "proxy": {
     "/auth/google": {
@@ -12,22 +16,49 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^6.2.0",
+    "babel-polyfill": "^6.26.0",
+    "eslint": "^4.10.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "jest-cli": "^21.2.1",
+    "jest-css-modules": "^1.1.0",
     "materialize-css": "^0.100.2",
+    "querystring": "^0.2.0",
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.3",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.14",
+    "react-scripts": "^1.0.14",
+    "react-stars": "^2.2.4",
     "react-stripe-checkout": "^2.6.3",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-form": "^7.1.1",
+    "redux-store": "0.0.0",
+    "redux-thunk": "^2.2.0",
+    "webpack": "^1.15.0",
+    "webpack-dev-server": "^1.16.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "postinstall": "webpack -p",
+    "test": "jest",
+    "flow": "flow"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "flow-bin": "^0.57.3",
+    "jest": "^21.2.1",
+    "jestpack": "^0.2.0",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "webpack-config": "^7.5.0"
   }
 }

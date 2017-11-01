@@ -2,10 +2,83 @@ const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 const Restaurant = mongoose.model('restaurants');
 const Mailer = require('../services/Mailer');
+const Rating = require('../models/Rating');
 
 const emailTemplate = require('../services/emailTemplates/emailTemplate');
 module.exports = app => {
-  app.post('api/restaurants', requireLogin, (req, res) => {
+  app.get('/api/selectField', async (req, res) => {
+    const fields = await Restaurant.find({}).select('name');
+    res.send(fields);
+  });
+  app.get('/api/featuredRestaurants', async (req, res) => {
+    const featured = await Restaurant.aggregate([
+      { $match: { featured: 'true' } },
+      { $limit: 4 },
+      {
+        $group: {
+          _id: '$_id',
+          avg: { $push: { $avg: '$review.overall' } },
+          name: { $first: '$name' },
+          type: { $first: '$type' },
+          review: {
+            $first: '$review.description'
+          }
+        }
+      },
+      {
+        $project: {
+          _id: 1,
+          name: 1,
+          type: 1,
+          avg: 1,
+          review: { $arrayElemAt: ['$review', 0] }
+        }
+      }
+    ]);
+
+    res.send(featured);
+  });
+  app.get('/api/ratings', requireLogin, async (req, res) => {
+    const ratings = await Restaurant.find({
+      'review._user': req.user.id
+    }).select('review');
+    res.send(ratings);
+  });
+  app.post('/api/ratings', requireLogin, async (req, res) => {
+    console.log(req.body);
+    const {
+      overall,
+      taste,
+      anonymous,
+      cleanliness,
+      staffDelivery,
+      service,
+      rating,
+      description
+    } = req.body;
+    const newRating = {
+      overall,
+      taste,
+      anonymous,
+      cleanliness,
+      staffDelivery,
+      service,
+      description,
+      _user: req.user.id,
+      dateCreated: Date.now()
+    };
+
+    const restaurant = await Restaurant.findOne({ _id: rating });
+    try {
+      await restaurant.review.push(newRating);
+      await restaurant.save();
+      res.send(newRating);
+    } catch (err) {
+      res.status(400).send(err);
+    }
+  });
+
+  app.post('/api/restaurants', requireLogin, async (req, res) => {
     const {
       name,
       type,
@@ -13,19 +86,30 @@ module.exports = app => {
       facebook,
       instagram,
       ownerEmail,
+      featured,
       address
     } = req.body;
-    const restaurant = new Restaurant({
+    const restaurants = new Restaurant({
       name,
       type,
       website,
       facebook,
       instagram,
       ownerEmail,
+      featured,
       address,
       dateCreated: Date.now()
     });
+
     const subject = 'What people say about' + name;
-    const mailer = new Mailer(subject, surveyTemplate(restaurant), ownerEmail);
+    console.log(subject);
+    const mailer = new Mailer(subject, emailTemplate(restaurants), ownerEmail);
+    try {
+      await mailer.send();
+      await restaurants.save();
+      res.send(restaurants);
+    } catch (err) {
+      res.status(422).send(err);
+    }
   });
 };

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 import Payments from './Payments';
 import { Navbar, Nav, MenuItem } from 'react-bootstrap';
 class Header extends Component {
@@ -26,14 +27,16 @@ class Header extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <div className="row">
-            <Nav>
+            <Nav pullRight>
               <MenuItem>
                 <Payments />
               </MenuItem>
               <MenuItem>BOOTCAMPS</MenuItem>
-              <MenuItem>SUBMIT A REVIEW</MenuItem>
+              <LinkContainer to="/ratings/new">
+                <MenuItem>SUBMIT A REVIEW</MenuItem>
+              </LinkContainer>
               <MenuItem>
-                Donations: {this.props.auth ? this.props.auth.credits : 0}
+                DONATIONS: {this.props.auth ? this.props.auth.credits : 0}
               </MenuItem>
               {this.renderContent()}
             </Nav>

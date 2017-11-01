@@ -1,0 +1,87 @@
+@import '../../../../partials/colors';
+header.masthead {
+  background: url('https://unsplash.it/1900/1080?image=999') no-repeat center
+    center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+header.masthead > .overlay {
+  padding: 5rem 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+@media (min-width: 950px) {
+  header.masthead > .overlay {
+    padding: 15rem 0;
+  }
+}
+
+.display-1 {
+  font-size: 6rem;
+  font-weight: 300;
+  color: 300;
+}
+
+.display-4 {
+  font-size: 3.5rem;
+  font-weight: 300;
+}
+
+.text-white {
+  color: #fff !important;
+}
+
+.restaurant-block {
+  display: inline-block;
+  background-color: #fff !important;
+  padding: 10px;
+  margin-left: -12px;
+  margin-top: 10px;
+  float: left;
+}
+.featured {
+  width: 100%;
+  align-self: center;
+  margin-left: 6.5px;
+}
+
+.restaurant-name {
+  padding-top: -50px;
+  font-size: 2rem;
+  color: red !important;
+}
+.favicon {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  float: left;
+}
+.stack {
+  padding-top: 4px;
+  font-size: 1.5rem;
+  color: $black;
+}
+.review-decor {
+  margin: 0;
+  background: #1ab188;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.review-decor p {
+  padding: 5px;
+  margin: 0px auto;
+  margin: 20px;
+  color: $text-color;
+  background-color: $form-backgroud;
+  font-style: italic;
+}
+.review-decor p:hover {
+  color: $form-backgroud;
+  background-color: $text-color;
+}
