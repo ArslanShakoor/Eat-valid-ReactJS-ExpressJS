@@ -1,0 +1,116 @@
+@import '../../../partials/colors';
+
+header.review {
+  background: url('https://unsplash.it/1900/1080?image=3') no-repeat center
+    center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+header.review > .overlay {
+  padding: 10rem 0;
+  background: rgba(0, 0, 0, 0.6);
+  align-items: center;
+}
+label .req {
+  color: $white;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: -30px;
+}
+
+.stars {
+  max-width: 50%;
+  float: left;
+  display: inline-block;
+  margin-top: 9px;
+}
+.camp-info {
+  position: relative;
+  background-color: $form-backgroud;
+  border: 2px solid #1ab188;
+  color: $text-color;
+}
+
+.pro-value {
+  margin-top: 0.1px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.camp-property {
+  font-size: 1.7rem;
+  font-weight: bold;
+  float: left;
+}
+.camp-value {
+  padding-top: 5px;
+  font-size: 1.5rem;
+}
+
+.reviews-section {
+  color: $text-color;
+  margin-top: 10px;
+  background-color: $form-backgroud;
+  border: 2px solid #1ab188;
+}
+.reviewer-info {
+  overflow: hidden;
+  color: $text-color;
+}
+.reviewer-info > .name {
+  color: #2e8b57;
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+.reviewer-info > .status {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.reviewer-info > .course {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.reviewer-info > .date {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.reviewer-star {
+  padding-top: 10px;
+  padding-left: 13px;
+  border: 1% solid #000000;
+}
+.single-review {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.review-title {
+  padding: 13px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: $label-color;
+}
+.review-description {
+  padding: 13px;
+  font-size: 1.6rem;
+  text-align: justify;
+}
+.camp-sidebar {
+  margin-top: 11px;
+}
+
+.nav-email {
+  color: #1ab188;
+  font-weight: bold;
+}
+
+@media (min-width: 950px) {
+  header.review > .overlay {
+    padding: rem 0;
+  }
+}

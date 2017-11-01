@@ -6,9 +6,8 @@ import * as actions from '../actions';
 import Header from './Header';
 import RatingNew from './ratings/RatingNew';
 import RestaurantNew from './restaurant/RestaurantNew';
+import RestaurantDetail from './restaurant/restaurantDetail';
 import Landing from './landing/';
-const Dashboard = () => <h2>Dashboard</h2>;
-const SurveyNew = () => <h2>SurveyNew</h2>;
 
 class App extends Component {
   constructor(props) {
@@ -24,8 +23,13 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header />
+
             <Route exact path="/restaurant/new" component={RestaurantNew} />
             <Route exact path="/ratings/new" component={RatingNew} />
+            <Route
+              path="/restaurant/detail/:id/:rating/:name"
+              component={RestaurantDetail}
+            />
             <Route exact path="/" component={Landing} />
           </div>
         </BrowserRouter>
