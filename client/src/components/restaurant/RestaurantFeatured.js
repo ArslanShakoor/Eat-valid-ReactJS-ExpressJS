@@ -12,23 +12,22 @@ class RestaurantFeatured extends Component {
   render() {
     return _.map(this.props.restaurant, rest => {
       return (
-        <Link
-          to={`restaurant/detail/${rest._id}/${rest.avg[0]}/${rest.name}`}
-          key={rest.name}
-        >
-          <div className="col-md-3">
-            <div className="restaurant-block">
-              <div className="restaurant-name">{rest.name}</div>
-              <div className="type">{rest.type}</div>
-              <div className="review-decor">
-                <p>{rest.review}</p>
+        <div>
+          <div className="col-md-3" key={rest._id}>
+            <Link to={`restaurant/detail/${rest._id}/${rest.name}/${rest.avg}`}>
+              <div className="restaurant-block">
+                <div className="restaurant-name">{rest.name}</div>
+                <div className="type">{rest.type}</div>
+                <div className="review-decor">
+                  <p>{rest.description}</p>
+                </div>
+                <div className="rating">
+                  <ReactStars count={5} size={20} value={4} edit={false} />
+                </div>
               </div>
-              <div className="rating">
-                <ReactStars count={5} size={20} value={4} edit={false} />
-              </div>
-            </div>
+            </Link>
           </div>
-        </Link>
+        </div>
       );
     });
   }

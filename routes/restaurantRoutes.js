@@ -6,7 +6,52 @@ const Rating = require('../models/Rating');
 
 const emailTemplate = require('../services/emailTemplates/emailTemplate');
 module.exports = app => {
-  app.get('/api/selectField', async (req, res) => {
+  app.get('/api/infoRestaurant/:id', async (req, res) => {
+    const id = req.params.id;
+
+    const info = await Restaurant.aggregate([
+      { $match: { _id: new mongoose.Types.ObjectId(id) } },
+      {
+        $group: {
+          _id: '$_id',
+          overall: { $push: { $avg: '$review.overall' } },
+          taste: { $push: { $avg: '$review.taste' } },
+          cleanliness: { $push: { $avg: '$review.cleanliness' } },
+          service: { $push: { $avg: '$review.service' } },
+          name: { $first: '$name' },
+          type: { $first: '$type' },
+          webste: { $first: '$website' },
+          instagram: { $first: '$name' },
+          facebook: { $first: '$facebook' }
+        }
+      },
+      {
+        $project: {
+          _id: 1,
+          avg: 1,
+          name: 1,
+          type: 1,
+          website: 1,
+          facebook: 1,
+          instagram: 1,
+          overall: 1,
+          taste: 1,
+          cleanliness: 1,
+          service: 1
+        }
+      }
+    ]);
+    res.send(info);
+  });
+  app.get('/api/reviewsRestaurant/:id', async (req, res) => {
+    const id = req.params.id;
+    const rest = await Restaurant.find({ _id: id })
+      .populate('_id review._user')
+      .select('review');
+    res.send(rest);
+  });
+
+  app.get('/api/selectField/', async (req, res) => {
     const fields = await Restaurant.find({}).select('name');
     res.send(fields);
   });
@@ -20,7 +65,7 @@ module.exports = app => {
           avg: { $push: { $avg: '$review.overall' } },
           name: { $first: '$name' },
           type: { $first: '$type' },
-          review: {
+          description: {
             $first: '$review.description'
           }
         }
@@ -31,7 +76,7 @@ module.exports = app => {
           name: 1,
           type: 1,
           avg: 1,
-          review: { $arrayElemAt: ['$review', 0] }
+          description: { $arrayElemAt: ['$description', 0] }
         }
       }
     ]);
@@ -45,7 +90,6 @@ module.exports = app => {
     res.send(ratings);
   });
   app.post('/api/ratings', requireLogin, async (req, res) => {
-    console.log(req.body);
     const {
       overall,
       taste,

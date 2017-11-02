@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const keys = require('../config/keys');
 
 //import the model users to use in passport
-const User = mongoose.model('users');
+const User = mongoose.model('User');
 
 //set id as a token and use as cookie
 passport.serializeUser((user, done) => {

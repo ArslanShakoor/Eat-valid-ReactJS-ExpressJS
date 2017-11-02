@@ -4,7 +4,6 @@ import * as actions from '../../actions/restaurant';
 
 class SelectField extends Component {
   componentDidMount() {
-    console.log('xyz');
     this.props.fetchField();
   }
 
