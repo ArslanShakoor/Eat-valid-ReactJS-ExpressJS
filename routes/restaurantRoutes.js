@@ -5,7 +5,95 @@ const Mailer = require('../services/Mailer');
 const Rating = require('../models/Rating');
 
 const emailTemplate = require('../services/emailTemplates/emailTemplate');
+
 module.exports = app => {
+  app.get('/api/listRestaurants', async (req, res) => {
+    const featured = await Restaurant.aggregate([
+      {
+        $group: {
+          _id: '$_id',
+          avg: { $push: { $avg: '$review.overall' } },
+          name: { $first: '$name' },
+          type: { $first: '$type' },
+          description: {
+            $first: '$review.description'
+          }
+        }
+      },
+      {
+        $project: {
+          _id: 1,
+          name: 1,
+          type: 1,
+          avg: 1,
+          description: { $arrayElemAt: ['$description', 0] }
+        }
+      }
+    ]);
+
+    res.send(featured);
+  });
+  app.put('/api/deleteReview/:id', requireLogin, async (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+    const rest = await Restaurant.findOneAndUpdate(
+      {
+        'review._id': id
+      },
+      {
+        $pull: { review: { _id: id } }
+      }
+    );
+    res.send(rest);
+  });
+
+  app.put('/api/updateReview/:id', requireLogin, async (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+
+    const updateReview = await Restaurant.findById(req.body.rating, function(
+      err,
+      restaurant
+    ) {
+      var subReview = restaurant.review.id(id);
+      subReview.set(req.body);
+      restaurant.save();
+    });
+    res.send(updateReview);
+  });
+
+  app.get('/api/oneReview/:id', requireLogin, async (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+
+    const firstReview = await Restaurant.find(
+      {
+        'review._id': new mongoose.Types.ObjectId(id)
+      },
+      {
+        'review.$': 1,
+        name: 1
+      }
+    );
+
+    res.send(firstReview);
+  });
+  app.get('/api/myReviews', requireLogin, async (req, res) => {
+    const id = req.user.id;
+
+    const info = await Restaurant.find(
+      {
+        'review._user': id
+      },
+      {
+        'review.$': 1,
+        name: 1
+      }
+    );
+
+    res.send(info);
+  });
+
   app.get('/api/infoRestaurant/:id', async (req, res) => {
     const id = req.params.id;
 

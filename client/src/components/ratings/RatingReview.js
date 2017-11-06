@@ -4,8 +4,15 @@ import formFields from './formFields';
 import field from '../../utils/form/field';
 import { withRouter } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
-import * as actions from '../../actions';
-const RatingReview = ({ onCancel, formValues, submitRating, history }) => {
+import * as actions from '../../actions/reviews';
+const RatingReview = ({
+  onCancel,
+  formValues,
+  id,
+  submitRating,
+  updateRating,
+  history
+}) => {
   const reviewFields = _.map(formFields, ({ name, label, type, req }) => {
     return (
       <Field
@@ -30,7 +37,12 @@ const RatingReview = ({ onCancel, formValues, submitRating, history }) => {
         <button
           type="submit"
           className="btn btn-lg btn-success pull-right"
-          onClick={() => submitRating(formValues, history)}
+          onClick={
+            (console.log('rating reviews 123'),
+            id
+              ? () => updateRating(formValues, id, history)
+              : () => submitRating(formValues, history))
+          }
         >
           Submit
         </button>

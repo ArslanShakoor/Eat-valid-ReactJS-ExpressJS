@@ -5,10 +5,13 @@ import { reduxForm } from 'redux-form';
 
 class RatingNew extends Component {
   state = { ratingReview: false };
-  renderContent() {
+  renderContent(id) {
+    let description = 'description value';
     if (this.state.showFormReview) {
       return (
         <RatingReview
+          //using id to find out it is create or update request
+          id={id}
           onCancel={() => {
             this.setState({
               showFormReview: false
@@ -17,8 +20,11 @@ class RatingNew extends Component {
         />
       );
     }
+
     return (
       <RatingForm
+        //using id to know it is create or update request
+        id={id}
         onSurveySubmit={() =>
           this.setState({
             showFormReview: true
@@ -27,7 +33,8 @@ class RatingNew extends Component {
     );
   }
   render() {
-    return this.renderContent();
+    const id = this.props.location.query;
+    return this.renderContent(id);
   }
 }
 export default reduxForm({

@@ -7,7 +7,12 @@ import Header from './Header';
 import RatingNew from './ratings/RatingNew';
 import RestaurantNew from './restaurant/RestaurantNew';
 import RestaurantDetail from './restaurant/restaurantDetail';
+import RestaurantList from './restaurant/RestaurantList';
+import RatingMy from './ratings/RatingMy';
 import Landing from './landing/';
+import Alert from 'react-s-alert';
+
+import 'react-s-alert/dist/s-alert-default.css';
 
 class App extends Component {
   constructor(props) {
@@ -23,16 +28,22 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header />
-
+            <Route exact path="/ratings/my" component={RatingMy} />
             <Route exact path="/restaurant/new" component={RestaurantNew} />
+            <Route exact path="/restaurant/list" component={RestaurantList} />
             <Route exact path="/ratings/new" component={RatingNew} />
             <Route
               path="/restaurant/detail/:id/:name/:rating"
               component={RestaurantDetail}
             />
+
             <Route exact path="/" component={Landing} />
           </div>
         </BrowserRouter>
+        <div>
+          <span>{this.props.children}</span>
+          <Alert stack={{ limit: 3 }} />
+        </div>
       </div>
     );
   }

@@ -19,6 +19,7 @@ class RestaurantForm extends Component {
           name={name}
           req={req}
           featured={featured}
+          express={name}
           component={field}
         />
       );

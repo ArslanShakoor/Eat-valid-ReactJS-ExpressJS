@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import ReactStars from 'react-stars';
 import * as actions from '../../actions/restaurant';
 
-class RestaurantFeatured extends Component {
+class RestaurantList extends Component {
   componentDidMount() {
-    console.log('asd');
-    this.props.featuredRestaurant();
+    this.props.listRestaurant();
+    window.scrollTo(0, 0);
   }
   description(str) {
     if (str) {
@@ -15,7 +15,7 @@ class RestaurantFeatured extends Component {
     }
   }
   render() {
-    return _.map(this.props.featured, rest => {
+    return _.map(this.props.restaurant, rest => {
       return (
         <div className="col-md-3" key={rest._id}>
           <Link to={`/restaurant/detail/${rest._id}/${rest.name}/${rest.avg}`}>
@@ -35,11 +35,11 @@ class RestaurantFeatured extends Component {
     });
   }
 }
-function mapStateToProps({ featured }) {
-  console.log(featured);
+function mapStateToProps({ restaurant }) {
+  console.log(restaurant);
   return {
-    featured
+    restaurant
   };
 }
 
-export default connect(mapStateToProps, actions)(RestaurantFeatured);
+export default connect(mapStateToProps, actions)(RestaurantList);

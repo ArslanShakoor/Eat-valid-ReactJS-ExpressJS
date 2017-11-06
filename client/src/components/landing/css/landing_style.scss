@@ -1,3 +1,4 @@
+//#1ab188
 @import '../../../partials/colors';
 header.masthead {
   background: url('https://unsplash.it/1900/1080?image=999') no-repeat center
@@ -36,12 +37,13 @@ header.masthead > .overlay {
 }
 
 .restaurant-block {
+  min-width: 220px;
+  max-width: 700px;
   display: inline-block;
   background-color: #fff !important;
   padding: 10px;
   margin-left: -12px;
   margin-top: 10px;
-  float: left;
 }
 .featured {
   width: 100%;
@@ -67,7 +69,7 @@ header.masthead > .overlay {
 }
 .review-decor {
   margin: 0;
-  background: #1ab188;
+  background: #e24e42;
   background-position: center top;
   background-repeat: no-repeat;
   display: inline-block;

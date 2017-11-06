@@ -4,7 +4,6 @@ import SelectField from './SelectField';
 export default ({
   input,
   label,
-  values,
   type,
   req,
   disable,
@@ -17,7 +16,10 @@ export default ({
           {label}
           <span className={req ? 'req' : ''} />
         </label>
-        <select {...input} disabled={disable}>
+        <select {...input} name={name} disabled={disable}>
+          <option value="" disabled>
+            Select
+          </option>
           <SelectField />
         </select>
         {touched && error}

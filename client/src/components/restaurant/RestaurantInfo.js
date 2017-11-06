@@ -7,6 +7,7 @@ class RestaurantInfo extends Component {
   componentDidMount() {
     const id = this.props.id;
     this.props.fetchInfo(id);
+    window.scrollTo(0, 0);
   }
   getValue(val) {
     if (val != null) {
@@ -32,66 +33,76 @@ class RestaurantInfo extends Component {
   }
   render() {
     const restaurant = this.props.restaurant[0];
-    return (
-      //course fees website facebook twitter graduationrate employment rate average salary
-      // overall_review curriculum review job_assistance instructor_review
-      <div className="camp-sidebar">
-        <div className="camp-info">
-          <div className="container-fluid">
-            <div className="pro-value">
-              <div className="col-sm-6 camp-property">Type:</div>
-              <div className="col-sm-6 camp-value">
+    if (restaurant) {
+      return (
+        //course fees website facebook twitter graduationrate employment rate average salary
+        // overall_review curriculum review job_assistance instructor_review
+        <div className="camp-sidebar">
+          <div className="camp-info">
+            <div className="row">
+              <span className="camp-property">Type:</span>
+
+              <span className="camp-value">
                 {this.getValue(restaurant.type)}
-              </div>
+              </span>
             </div>
-            <div className="pro-value">
-              <div className="col-sm-6 camp-property">website:</div>
-              <div className="col-sm-6 camp-value">
-                {this.getWebsite(restaurant.website)}
-              </div>
+            <div className="row">
+              <span className="camp-property">Website:</span>
+
+              <span className="camp-value">
+                {this.getValue(restaurant.website)}
+              </span>
             </div>
-            <div className="pro-value">
-              <div className="col-sm-6 camp-property">Facebook:</div>
-              <div className="col-sm-6 camp-value">
+            <div className="row">
+              <span className="camp-property">Facebook:</span>
+
+              <span className="camp-value">
                 {this.getValue(restaurant.facebook)}
-              </div>
+              </span>
             </div>
-            <div className="pro-value">
-              <div className="col-sm-6 camp-property">Instagram:</div>
-              <div className="col-sm-6 camp-value">
+            <div className="row">
+              <span className="camp-property">Instagram:</span>
+
+              <span className="camp-value">
                 {this.getValue(restaurant.instagram)}
-              </div>
+              </span>
             </div>
-            <div className="pro-value">
-              <div className="col-sm-6 camp-property">Overall:</div>
-              <div className="col-sm-6 camp-value">
+            <div className="row">
+              <span className="camp-property">Overall:</span>
+
+              <span className="camp-value">
                 {this.getRating(restaurant.overall)}
-              </div>
+              </span>
             </div>
-            <div className="pro-value">
-              <div className="col-sm-6 camp-property">Taste:</div>
-              <div className="col-sm-6 camp-value">
+            <div className="row">
+              <span className="camp-property">Taste:</span>
+
+              <span className="camp-value">
                 {this.getRating(restaurant.taste)}
-              </div>
+              </span>
             </div>
-            <div className="pro-value">
-              <div className="col-sm-6 camp-property">Cleanliness:</div>
-              <div className="col-sm-6 camp-value">
+            <div className="row">
+              <span className="camp-property">Cleanliness:</span>
+
+              <span className="camp-value">
                 {this.getRating(restaurant.cleanliness)}
-              </div>
+              </span>
             </div>
-            <div className="pro-value">
-              <div className="col-sm-6 camp-property">Service:</div>
-              <div className="col-sm-6 camp-value">
+            <div className="row">
+              <span className="camp-property">Service:</span>
+
+              <span className="camp-value">
                 {this.getRating(restaurant.service)}
-              </div>
+              </span>
             </div>
 
             <br />
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return <p>laoding...</p>;
+    }
   }
 }
 function mapStateToProps({ restaurant }) {

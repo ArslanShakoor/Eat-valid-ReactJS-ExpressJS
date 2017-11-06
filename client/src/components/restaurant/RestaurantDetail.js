@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import RestaurantHeader from './RestaurantHeader';
-import RestaurantReviews from './RestaurantReviews';
+import RatingReviews from '../ratings/RatingReviews';
 import RestaurantInfo from './RestaurantInfo';
+import RestaurantFeatured from './RestaurantFeatured';
+import './css/restaurant_style.scss';
 
 class RestaurantDetail extends Component {
   render() {
     const { id } = this.props.match.params;
+
     const { rating } = this.props.match.params;
     const { name } = this.props.match.params;
     let props = {
@@ -15,11 +18,17 @@ class RestaurantDetail extends Component {
     return (
       <div>
         <RestaurantHeader {...props} />
-        <div className="col-md-8">
-          <RestaurantReviews id={id} />
+
+        <div className="col-md-9">
+          <RatingReviews id={id} />
         </div>
-        <div className="col-md-4">
+        <div className="col-md-3">
           <RestaurantInfo id={id} />
+
+          <div className="detail-featured">
+            <span className="featured-restaurant">FEATURED</span>
+            <RestaurantFeatured />
+          </div>
         </div>
       </div>
     );

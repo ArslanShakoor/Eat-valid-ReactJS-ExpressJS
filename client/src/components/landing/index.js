@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FeaturedRestaurant from '../restaurant/RestaurantFeatured';
-import './css/landing_style.scss';
+import styles from './css/landing_style.scss';
 
 export default class Index extends Component {
   renderHeader() {
@@ -20,6 +20,7 @@ export default class Index extends Component {
       <div>
         {this.renderHeader()}
         <div className="featured row">
+          <span className="featured-restaurant">FEATURED</span>
           <FeaturedRestaurant />
         </div>
       </div>

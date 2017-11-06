@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import RestaurantForm from './RestaurantForm';
 class RestaurantNew extends Component {
-  render() {}
+  render() {
+    return <RestaurantForm />;
+  }
 }
 export default RestaurantNew;

@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import * as actions from '../../actions/reviews';
 import { connect } from 'react-redux';
 import ReactStars from 'react-stars';
+import Scroll from 'react-scroll';
 
-class RestaurantReviews extends Component {
+let scroll = Scroll.animateScroll;
+
+class RatingReviews extends Component {
   componentDidMount() {
     const id = this.props.id;
     this.props.fetchReviews(id);
   }
+
   getRating(val) {
     return <ReactStars count={5} size={20} value={Number(val)} edit={false} />;
   }
@@ -27,6 +31,7 @@ class RestaurantReviews extends Component {
   }
 
   render() {
+    scroll.scrollTo(0);
     return _.map(this.props.reviews, review => {
       return (
         <div key={review._id}>
@@ -74,4 +79,4 @@ function mapStateToProps({ reviews }) {
   };
 }
 
-export default connect(mapStateToProps, actions)(RestaurantReviews);
+export default connect(mapStateToProps, actions)(RatingReviews);

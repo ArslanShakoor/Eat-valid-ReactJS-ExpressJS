@@ -24,7 +24,19 @@ a {
 a:hover {
   color: #179b77;
 }
-
+.glyphicon {
+  font-size: 20px;
+}
+.edit-delete {
+  text-align: right;
+  padding-top: 2px;
+}
+.delete-button {
+  color: red;
+  padding: 0;
+  border: none;
+  background: none;
+}
 .form {
   background: $form-backgroud;
   padding: 40px;

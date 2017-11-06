@@ -3,25 +3,33 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import Payments from './Payments';
-import { Navbar, Nav, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav, MenuItem, NavItem, NavDropdown } from 'react-bootstrap';
+import './index.scss';
 class Header extends Component {
   renderContent() {
-    switch (this.props.auth) {
-      case null:
-        return;
-      case false:
-        return <MenuItem href="/auth/google">SIGN IN WITH GOOGLE</MenuItem>;
-      default:
-        return <MenuItem href="/api/logout">LOGOUT</MenuItem>;
+    if (this.props.auth) {
+      return (
+        <NavDropdown title="Me" id="basic-nav-dropdown">
+          <LinkContainer to="/ratings/my">
+            <MenuItem>MY REVIEWS</MenuItem>
+          </LinkContainer>
+          <MenuItem>
+            DONATIONS: {this.props.auth ? this.props.auth.credits : 0}
+          </MenuItem>
+          <MenuItem href="/api/logout">LOGOUT</MenuItem>
+        </NavDropdown>
+      );
+    } else {
+      return <MenuItem href="/auth/google">SIGN IN WITH GOOGLE</MenuItem>;
     }
   }
   render() {
     console.log(this.props);
     const appNavbar = (
-      <Navbar inverse fluid collapseOnSelect>
+      <Navbar fluid collapseOnSelect>
         <Navbar.Header>
           <Link to={'/'}>
-            <Navbar.Brand>CODE SCHOOL</Navbar.Brand>
+            <Navbar.Brand>EAT VALID!</Navbar.Brand>
           </Link>
           <Navbar.Toggle />
         </Navbar.Header>
@@ -31,13 +39,14 @@ class Header extends Component {
               <MenuItem>
                 <Payments />
               </MenuItem>
-              <MenuItem>BOOTCAMPS</MenuItem>
-              <LinkContainer to="/ratings/new">
-                <MenuItem>SUBMIT A REVIEW</MenuItem>
+              <LinkContainer to="/restaurant/list">
+                <MenuItem>RESTAURANT</MenuItem>
               </LinkContainer>
-              <MenuItem>
-                DONATIONS: {this.props.auth ? this.props.auth.credits : 0}
-              </MenuItem>
+              <LinkContainer to="/ratings/new">
+                <MenuItem>
+                  <span className="menuItem">SUBMIT A REVIEW</span>
+                </MenuItem>
+              </LinkContainer>
               {this.renderContent()}
             </Nav>
           </div>
@@ -51,6 +60,8 @@ class Header extends Component {
 //   return {auth: state.auth}
 // }
 function mapStateToProps({ auth }) {
+  console.log('ad');
+  console.log(auth);
   return { auth };
 }
 export default connect(mapStateToProps)(Header);
