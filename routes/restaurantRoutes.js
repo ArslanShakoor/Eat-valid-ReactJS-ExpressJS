@@ -210,7 +210,7 @@ module.exports = app => {
     }
   });
 
-  app.post('/api/restaurants', requireLogin, async (req, res) => {
+  app.post('/api/restaurants', async (req, res) => {
     const {
       name,
       type,

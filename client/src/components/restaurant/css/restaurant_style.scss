@@ -9,6 +9,10 @@ header.review {
   -o-background-size: cover;
 }
 
+.error {
+  color: #ff0000;
+}
+
 header.review > .overlay {
   padding: 10rem 0;
   background: rgba(0, 0, 0, 0.6);
@@ -27,7 +31,6 @@ label .req {
   align-content: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   list-style: none;
 }
 .content {
@@ -76,6 +79,8 @@ label .req {
   margin-top: 10px;
   background-color: $form-backgroud;
   border: 2px solid #e24e42;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 .reviewer-info {
   overflow: hidden;
@@ -121,6 +126,7 @@ label .req {
 }
 .camp-sidebar {
   margin-top: 11px;
+  margin-right: -15px;
 }
 
 .nav-email {
@@ -131,5 +137,16 @@ label .req {
 @media (min-width: 950px) {
   header.review > .overlay {
     padding: rem 0;
+  }
+}
+@media (max-width: 990px) {
+  .camp-sidebar {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .detail-featured {
+    width: 100%;
+    display: inline;
+    padding-right: -14px;
   }
 }

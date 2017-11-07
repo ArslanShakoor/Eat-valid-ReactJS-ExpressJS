@@ -3,12 +3,10 @@ import RestaurantHeader from './RestaurantHeader';
 import RatingReviews from '../ratings/RatingReviews';
 import RestaurantInfo from './RestaurantInfo';
 import RestaurantFeatured from './RestaurantFeatured';
-import './css/restaurant_style.scss';
 
 class RestaurantDetail extends Component {
   render() {
     const { id } = this.props.match.params;
-
     const { rating } = this.props.match.params;
     const { name } = this.props.match.params;
     let props = {

@@ -61,9 +61,14 @@ class RatingForm extends Component {
       <div className="form">
         <form onSubmit={handleSubmit(this.props.onSurveySubmit)}>
           {this.renderFirstField()}
-          <button type="submit" className="button button-block">
-            Submit
-          </button>
+          <div className="clearfix">
+            <button
+              className="btn btn-success pull-right btn-pad"
+              type="submit"
+            >
+              Next
+            </button>
+          </div>
         </form>
       </div>
     );

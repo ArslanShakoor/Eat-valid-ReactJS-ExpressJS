@@ -9,7 +9,7 @@ class Header extends Component {
   renderContent() {
     if (this.props.auth) {
       return (
-        <NavDropdown title="Me" id="basic-nav-dropdown">
+        <NavDropdown title={this.props.auth.name} id="basic-nav-dropdown">
           <LinkContainer to="/ratings/my">
             <MenuItem>MY REVIEWS</MenuItem>
           </LinkContainer>
@@ -40,12 +40,10 @@ class Header extends Component {
                 <Payments />
               </MenuItem>
               <LinkContainer to="/restaurant/list">
-                <MenuItem>RESTAURANT</MenuItem>
+                <NavItem>RESTAURANT</NavItem>
               </LinkContainer>
               <LinkContainer to="/ratings/new">
-                <MenuItem>
-                  <span className="menuItem">SUBMIT A REVIEW</span>
-                </MenuItem>
+                <NavItem>SUBMIT A REVIEW</NavItem>
               </LinkContainer>
               {this.renderContent()}
             </Nav>

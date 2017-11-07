@@ -6,7 +6,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import RatingNew from './ratings/RatingNew';
 import RestaurantNew from './restaurant/RestaurantNew';
-import RestaurantDetail from './restaurant/restaurantDetail';
+import RestaurantDetail from './restaurant/RestaurantDetail';
 import RestaurantList from './restaurant/RestaurantList';
 import RatingMy from './ratings/RatingMy';
 import Landing from './landing/';
@@ -36,7 +36,6 @@ class App extends Component {
               path="/restaurant/detail/:id/:name/:rating"
               component={RestaurantDetail}
             />
-
             <Route exact path="/" component={Landing} />
           </div>
         </BrowserRouter>

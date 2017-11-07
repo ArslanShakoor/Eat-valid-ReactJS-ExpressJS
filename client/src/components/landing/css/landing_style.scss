@@ -21,11 +21,18 @@ header.masthead > .overlay {
   }
 }
 .loader {
+  align-self: center;
   border: 16px solid #f3f3f3; /* Light grey */
   border-top: 16px solid #3498db; /* Blue */
   border-radius: 50%;
   width: 10px;
   height: 10px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
   animation: spin 2s linear infinite;
 }
 
@@ -63,9 +70,8 @@ header.masthead > .overlay {
   margin-top: 10px;
 }
 .featured {
-  width: 100%;
-  align-self: center;
-  margin-left: 6.5px;
+  margin-left: -4px;
+  margin-right: -13px;
 }
 
 .restaurant-name {

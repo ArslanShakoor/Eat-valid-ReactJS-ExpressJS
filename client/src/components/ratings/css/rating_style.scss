@@ -39,11 +39,12 @@ a:hover {
 }
 .form {
   background: $form-backgroud;
-  padding: 40px;
-  max-width: 1300px;
-  margin: 40px auto;
+  padding: 20px;
   border-radius: 4px;
   box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+.btn-pad {
+  margin-top: 10px;
 }
 
 .tab-group {
@@ -94,6 +95,8 @@ label {
   left: 13px;
   color: $label-color;
   font-size: 22px;
+  margin-top: 10px;
+  margin-bottom: 0px;
 }
 label .req {
   color: #1ab188;
@@ -146,15 +149,13 @@ input:-webkit-autofill {
 input[type='checkbox'] {
   cursor: pointer;
   -webkit-appearance: none;
-  appearance: none;
-  // background: #34495E;
+  margin-top: -2px;
   border-radius: 1px;
   box-sizing: border-box;
   position: relative;
   box-sizing: content-box;
   width: 33px;
   height: 33px;
-  border-width: 1;
   transition: all 0.3s linear;
 }
 

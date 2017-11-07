@@ -31,21 +31,23 @@ const RatingReview = ({
       <h1>Review Your Rating</h1>
       <div className="form">
         {reviewFields}
-        <button className="btn btn-lg btn-danger" onClick={onCancel}>
-          Back
-        </button>
-        <button
-          type="submit"
-          className="btn btn-lg btn-success pull-right"
-          onClick={
-            (console.log('rating reviews 123'),
-            id
-              ? () => updateRating(formValues, id, history)
-              : () => submitRating(formValues, history))
-          }
-        >
-          Submit
-        </button>
+        <div className="clearfix">
+          <button className="btn btn-lg btn-danger btn-pad" onClick={onCancel}>
+            Edit
+          </button>
+          <button
+            type="submit"
+            className="btn btn-lg btn-success pull-right btn-pad"
+            onClick={
+              (console.log('rating reviews 123'),
+              id
+                ? () => updateRating(formValues, id, history)
+                : () => submitRating(formValues, history))
+            }
+          >
+            Submit
+          </button>
+        </div>
       </div>
     </div>
   );

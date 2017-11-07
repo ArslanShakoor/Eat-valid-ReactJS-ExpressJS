@@ -19,7 +19,7 @@ export default class Index extends Component {
     return (
       <div>
         {this.renderHeader()}
-        <div className="featured row">
+        <div className="featured">
           <span className="featured-restaurant">FEATURED</span>
           <FeaturedRestaurant />
         </div>

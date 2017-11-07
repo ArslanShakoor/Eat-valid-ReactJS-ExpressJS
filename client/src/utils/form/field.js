@@ -22,7 +22,7 @@ export default ({
           </option>
           <SelectField />
         </select>
-        {touched && error}
+        <div className="error">{touched && error}</div>
       </div>
     );
   } else if (type === 'textarea') {
@@ -33,7 +33,7 @@ export default ({
           <span className={req ? 'req' : 'none'} />
         </label>
         <textarea {...input} rows="3" disabled={disable} />
-        {touched && error}
+        <div className="error">{touched && error}</div>
       </div>
     );
   } else if (type === 'stars') {
@@ -44,7 +44,7 @@ export default ({
           <span className={req ? 'req' : 'none'} />
         </label>
         <ReactStars edit={disable} {...input} count={5} size={20} />
-        {touched && error}
+        <div className="error">{touched && error}</div>
       </div>
     );
   } else if (type === 'text' || 'checkbox') {
@@ -55,7 +55,7 @@ export default ({
           <span className={req ? 'req' : 'none'} />
         </label>
         <input {...input} type={type} disabled={disable} />
-        {touched && error}
+        <div className="error">{touched && error}</div>
       </div>
     );
   }
