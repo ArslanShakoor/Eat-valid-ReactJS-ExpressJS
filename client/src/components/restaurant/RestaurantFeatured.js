@@ -17,7 +17,7 @@ class RestaurantFeatured extends Component {
   render() {
     return _.map(this.props.featured, rest => {
       return (
-        <div className="col-md-3" key={rest._id}>
+        <div className="col-md-3 col-sm-6 col-xs-12" key={rest._id}>
           <Link to={`/restaurant/detail/${rest._id}/${rest.name}/${rest.avg}`}>
             <div className="restaurant-block">
               <div className="restaurant-name">{rest.name}</div>

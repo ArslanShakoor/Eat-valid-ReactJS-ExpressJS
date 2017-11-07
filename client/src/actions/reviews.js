@@ -1,6 +1,4 @@
-import { FETCH_REVIEWS } from './types';
-import { MY_REVIEWS } from './types';
-import { ONE_REVIEW } from './types';
+import { FETCH_REVIEWS, MY_REVIEWS, ONE_REVIEW } from './types';
 import Alert from 'react-s-alert';
 
 export const fetchReviews = id => async dispatch => {

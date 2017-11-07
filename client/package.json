@@ -62,6 +62,7 @@
     "jest": "^21.2.1",
     "jestpack": "^0.2.0",
     "node-sass": "^4.5.3",
+    "redux-devtools-extension": "^2.13.2",
     "sass-loader": "^6.0.6",
     "webpack-config": "^7.5.0"
   }

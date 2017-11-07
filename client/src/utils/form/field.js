@@ -38,7 +38,7 @@ export default ({
     );
   } else if (type === 'stars') {
     return (
-      <div className="col-sm-3">
+      <div className="col-md-3 col-sm-6 col-xs-12">
         <label>
           {label}
           <span className={req ? 'req' : 'none'} />

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 class RatingMy extends Component {
   componentDidMount() {
+    console.log('component did mount');
     this.props.myReviews();
   }
 
@@ -47,59 +48,54 @@ class RatingMy extends Component {
     }
   }
   render() {
-    const reviews = this.props.reviews;
-    if (reviews) {
-      const key = 0;
+    if (this.props.reviews) {
       return _.map(this.props.reviews, rating => {
+        let review = rating.review[0];
         return (
           <div key={rating.name}>
             <div className="reviews-section">
               <div className="reviewer-info">
                 <div className="col-xs-6 name">{rating.name}</div>
                 <div className="col-xs-3 date">
-                  {this.getFormatDate(rating.review[key].dateCreated)}
+                  {this.getFormatDate(review.dateCreated)}
                 </div>
                 <div className="col-xs-3 pull-right editDelete edit-delete ">
-                  {this.editDelete(rating.review[key]._id, this.props.history)}
+                  {this.editDelete(review._id, this.props.history)}
                 </div>
               </div>
               <div className="row reviewer-star">
-                <div className="col-sm-3 ">
-                  {this.getRating(rating.review[key].overall)}
+                <div className="col-md-3 col-xs-6">
+                  {this.getRating(review.overall)}
                   OVERALL
                 </div>
-                <div className="col-sm-3">
-                  {this.getRating(rating.review[key].taste)}
+                <div className="col-md-3 col-xs-6">
+                  {this.getRating(review.taste)}
                   TASTE
                 </div>
 
-                <div className="col-sm-3">
-                  {this.getRating(rating.review[key].cleanliness)}
+                <div className="col-md-3 col-xs-6">
+                  {this.getRating(review.cleanliness)}
                   CLEAN
                 </div>
-                <div className="col-sm-3">
-                  {this.getRating(rating.review[key].service)}
+                <div className="col-md-3 col-xs-6">
+                  {this.getRating(review.service)}
                   SERVICE
                 </div>
               </div>
 
-              <div className="review-description">
-                {rating.review[key].description}
-              </div>
+              <div className="review-description">{review.description}</div>
             </div>
           </div>
         );
       });
     } else {
-      return <p> Loadinng</p>;
+      return <div className="loader" />;
     }
   }
 }
 function mapStateToProps({ reviews }) {
-  console.log('myreview');
-  console.log(reviews);
   return {
-    reviews
+    reviews: reviews.data
   };
 }
 

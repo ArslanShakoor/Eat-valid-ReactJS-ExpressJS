@@ -1,8 +1,11 @@
 import { FETCH_USER } from './types';
-import { FEATURED_RESTAURANT } from './types';
-import { FIELD_RESTAURANT } from './types';
-import { FETCH_INFO } from './types';
-import { LIST_RESTAURANT } from './types';
+import {
+  FEATURED_RESTAURANT,
+  FIELD_RESTAURANT,
+  FETCH_INFO,
+  LIST_RESTAURANT
+} from './types';
+
 import axios from 'axios';
 
 export const createRestaurant = values => async dispatch => {

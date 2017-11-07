@@ -8,8 +8,14 @@ let scroll = Scroll.animateScroll;
 
 class RatingReviews extends Component {
   componentDidMount() {
-    const id = this.props.id;
-    this.props.fetchReviews(id);
+    console.log('component did mount');
+    this.props.fetchReviews(this.props.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.id != prevProps.id) {
+      this.props.fetchReviews(this.props.id);
+    }
   }
 
   getRating(val) {
@@ -32,50 +38,58 @@ class RatingReviews extends Component {
 
   render() {
     scroll.scrollTo(0);
-    return _.map(this.props.reviews, review => {
-      return (
-        <div key={review._id}>
-          <div className="reviews-section">
-            <div className="reviewer-info">
-              <div className="col-sm-3 name">
-                {review.anonymous ? 'Anonymous' : this.getName(review['_user'])}
+    if (this.props.reviews) {
+      return _.map(this.props.reviews[0].review, review => {
+        return (
+          <div key={review._id}>
+            <div className="reviews-section">
+              <div className="reviewer-info">
+                <div className="col-sm-3 name">
+                  {review.anonymous
+                    ? 'Anonymous'
+                    : this.getName(review['_user'])}
+                </div>
+                <div className="col-sm-3 status" />
+                <div className="col-sm-4 course" />
+                <div className="col-sm-2 date">
+                  {this.getFormatDate(review.dateCreated)}
+                </div>
               </div>
-              <div className="col-sm-3 status" />
-              <div className="col-sm-4 course" />
-              <div className="col-sm-2 date">
-                {this.getFormatDate(review.dateCreated)}
-              </div>
-            </div>
-            <div className="row reviewer-star">
-              <div className="col-sm-3 ">
-                {this.getRating(review.overall)}
-                OVERALL
-              </div>
-              <div className="col-sm-3">
-                {this.getRating(review.taste)}
-                TASTE
-              </div>
+              <div className="row reviewer-star">
+                <div className="col-md-3 col-xs-6 ">
+                  {this.getRating(review.overall)}
+                  OVERALL
+                </div>
+                <div className="col-md-3 col-xs-6 ">
+                  {this.getRating(review.taste)}
+                  TASTE
+                </div>
 
-              <div className="col-sm-3">
-                {this.getRating(review.cleanliness)}
-                CLEAN
+                <div className="col-md-3 col-xs-6 ">
+                  {this.getRating(review.cleanliness)}
+                  CLEAN
+                </div>
+                <div className="col-md-3 col-xs-6 ">
+                  {this.getRating(review.service)}
+                  SERVICE
+                </div>
               </div>
-              <div className="col-sm-3">
-                {this.getRating(review.service)}
-                SERVICE
-              </div>
+              <div className="review-description">{review.description}</div>
             </div>
-            <div className="review-description">{review.description}</div>
           </div>
-        </div>
-      );
-    });
+        );
+      });
+      scroll.scrollTo(0);
+    } else {
+      return <div className="loader" />;
+    }
   }
 }
 function mapStateToProps({ reviews }) {
-  console.log(reviews);
+  console.log('asdf');
+  console.log(reviews.data);
   return {
-    reviews
+    reviews: reviews.data
   };
 }
 

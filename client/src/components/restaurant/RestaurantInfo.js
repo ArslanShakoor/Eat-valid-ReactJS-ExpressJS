@@ -5,10 +5,16 @@ import ReactStars from 'react-stars';
 
 class RestaurantInfo extends Component {
   componentDidMount() {
-    const id = this.props.id;
-    this.props.fetchInfo(id);
+    this.props.fetchInfo(this.props.id);
     window.scrollTo(0, 0);
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.id != prevProps.id) {
+      this.props.fetchInfo(this.props.id);
+    }
+  }
+
   getValue(val) {
     if (val != null) {
       return val;
@@ -101,12 +107,11 @@ class RestaurantInfo extends Component {
         </div>
       );
     } else {
-      return <p>laoding...</p>;
+      return <div className="loader" />;
     }
   }
 }
 function mapStateToProps({ restaurant }) {
-  console.log(restaurant);
   return {
     restaurant
   };
