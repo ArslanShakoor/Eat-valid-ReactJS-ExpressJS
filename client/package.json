@@ -50,7 +50,8 @@
   },
   "scripts": {
     "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "postinstall": "webpack -p",
+    "heroku-postbuild":
+      "webpack -p --config ./webpack.prod.config.js --progress",
     "test": "jest",
     "flow": "flow"
   },
