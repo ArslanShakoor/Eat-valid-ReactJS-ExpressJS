@@ -111,9 +111,9 @@ class RestaurantInfo extends Component {
     }
   }
 }
-function mapStateToProps({ restaurant }) {
+function mapStateToProps(store) {
   return {
-    restaurant
+    restaurant: store.restaurant
   };
 }
 

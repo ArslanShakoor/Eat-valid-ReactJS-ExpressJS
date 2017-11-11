@@ -47,7 +47,7 @@ class RatingMy extends Component {
       return (date = new Date(cts).toLocaleDateString('en-US'));
     }
   }
-  render() {
+  myReviews() {
     if (this.props.reviews) {
       return _.map(this.props.reviews, rating => {
         let review = rating.review[0];
@@ -91,6 +91,9 @@ class RatingMy extends Component {
     } else {
       return <div className="loader" />;
     }
+  }
+  render() {
+    return <div className="col-md-12">{this.myReviews()}</div>;
   }
 }
 function mapStateToProps({ reviews }) {

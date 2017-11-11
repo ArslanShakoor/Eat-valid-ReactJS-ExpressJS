@@ -28,10 +28,8 @@ label .req {
   text-align: center;
 }
 .detail-featured {
-  align-content: center;
   display: flex;
   flex-direction: column;
-  list-style: none;
 }
 .content {
   display: flex;
@@ -145,8 +143,6 @@ label .req {
     margin-right: -15px;
   }
   .detail-featured {
-    width: 100%;
     display: inline;
-    padding-right: -14px;
   }
 }
