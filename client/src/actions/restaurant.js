@@ -15,13 +15,11 @@ export const createRestaurant = values => async dispatch => {
 
 export const featuredRestaurant = () => async dispatch => {
   const res = await axios.get('/api/featuredRestaurants');
-  console.log(res);
   dispatch({ type: FEATURED_RESTAURANT, payload: res });
 };
 
 export const listRestaurant = () => async dispatch => {
   const res = await axios.get('/api/listRestaurants');
-  console.log(res);
   dispatch({ type: LIST_RESTAURANT, payload: res });
 };
 
@@ -31,7 +29,6 @@ export const fetchField = () => async dispatch => {
 };
 
 export const fetchInfo = id => async dispatch => {
-  console.log('fetch the info');
   const res = await axios.get(`/api/infoRestaurant/${id}`);
   dispatch({ type: FETCH_INFO, payload: res });
 };

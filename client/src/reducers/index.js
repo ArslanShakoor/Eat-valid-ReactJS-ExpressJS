@@ -9,5 +9,6 @@ export default combineReducers({
   restaurant: restaurantReducer,
   reviews: reviewsReducer,
   featured: featuredRestaurantReducer,
-  form: reduxForm
+  form: reduxForm,
+  pure: false
 });

@@ -1,5 +1,6 @@
 import { FETCH_REVIEWS, MY_REVIEWS, ONE_REVIEW } from './types';
 import Alert from 'react-s-alert';
+import axios from 'axios';
 
 export const fetchReviews = id => async dispatch => {
   const res = await axios.get(`/api/reviewsRestaurant/${id}`);
@@ -7,7 +8,6 @@ export const fetchReviews = id => async dispatch => {
 };
 export const myReviews = id => async dispatch => {
   const res = await axios.get(`/api/myReviews`);
-  console.log(res);
   dispatch({ type: MY_REVIEWS, payload: res });
 };
 export const fetchOneReview = id => async dispatch => {
@@ -38,11 +38,9 @@ export const submitRating = (values, history) => async dispatch => {
       position: 'bottom'
     });
   } catch (err) {
-    console.log(err);
     Alert.error('You must need to logged to submit a Review', {
       position: 'bottom'
     });
   }
-
   history.push('/');
 };

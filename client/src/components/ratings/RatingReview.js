@@ -39,10 +39,9 @@ const RatingReview = ({
             type="submit"
             className="btn btn-lg btn-success pull-right btn-pad"
             onClick={
-              (console.log('rating reviews 123'),
               id
                 ? () => updateRating(formValues, id, history)
-                : () => submitRating(formValues, history))
+                : () => submitRating(formValues, history)
             }
           >
             Submit

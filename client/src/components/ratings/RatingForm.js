@@ -58,18 +58,21 @@ class RatingForm extends Component {
     console.log(reviews);
     const { handleSubmit } = this.props;
     return (
-      <div className="form">
-        <form onSubmit={handleSubmit(this.props.onSurveySubmit)}>
-          {this.renderFirstField()}
-          <div className="clearfix">
-            <button
-              className="btn btn-success pull-right btn-pad"
-              type="submit"
-            >
-              Next
-            </button>
-          </div>
-        </form>
+      <div>
+        <h1>Submit Your Review</h1>
+        <div className="form">
+          <form onSubmit={handleSubmit(this.props.onSurveySubmit)}>
+            {this.renderFirstField()}
+            <div className="clearfix">
+              <button
+                className="btn btn-success pull-right btn-pad"
+                type="submit"
+              >
+                Next
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

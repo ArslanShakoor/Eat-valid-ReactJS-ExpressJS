@@ -58,8 +58,10 @@ class Header extends Component {
 //   return {auth: state.auth}
 // }
 function mapStateToProps({ auth }) {
-  console.log('ad');
-  console.log(auth);
-  return { auth };
+  return {
+    auth
+  };
 }
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, null, null, {
+  pure: false
+})(Header);
